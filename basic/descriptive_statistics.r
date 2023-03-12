@@ -131,6 +131,14 @@ summarise(
   sd = sd(Sepal.Length, na.rm = TRUE)
   )
 
-# ????????????????????????????????
-# ???? %>%
-# ???? all of the above
+
+# magrittr is required for %>%
+library(magrittr)
+# forward-pipe operator
+# The man page https://cran.r-project.org/web/packages/magrittr/index.html
+# There is flexible support for the type of right-hand side expressions
+# To quote Rene Magritte, "Ceci n'est pas un pipe." or "This Is Not a Pipe"
+iris %>% head()
+# is the same as 
+head(iris)
+
