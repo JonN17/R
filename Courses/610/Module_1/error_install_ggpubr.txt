@@ -1,0 +1,192 @@
+(R) jnowacki@JetSetter:/data/repos/R/basic$ R
+
+R version 3.6.3 (2020-02-29) -- "Holding the Windsock"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-conda-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> install.packages("ggpubr")
+--- Please select a CRAN mirror for use in this session ---
+Secure CRAN mirrors
+
+ 1: 0-Cloud [https]
+ 2: Australia (Canberra) [https]
+ 3: Australia (Melbourne 1) [https]
+ 4: Australia (Melbourne 2) [https]
+ 5: Australia (Perth) [https]
+ 6: Austria [https]
+ 7: Belgium (Brussels) [https]
+ 8: Brazil (PR) [https]
+ 9: Brazil (RJ) [https]
+10: Brazil (SP 1) [https]
+11: Brazil (SP 2) [https]
+12: Bulgaria [https]
+13: Canada (MB) [https]
+14: Canada (ON 3) [https]
+15: Chile (Santiago) [https]
+16: China (Beijing 2) [https]
+17: China (Beijing 3) [https]
+18: China (Hefei) [https]
+19: China (Hong Kong) [https]
+20: China (Guangzhou) [https]
+21: China (Jinan) [https]
+22: China (Lanzhou) [https]
+23: China (Nanjing) [https]
+24: China (Shanghai 2) [https]
+25: China (Shenzhen) [https]
+26: Colombia (Cali) [https]
+27: Costa Rica [https]
+28: Czech Republic [https]
+29: Denmark [https]
+30: East Asia [https]
+31: Ecuador (Cuenca) [https]
+32: France (Lyon 1) [https]
+33: France (Lyon 2) [https]
+34: France (Marseille) [https]
+35: France (Paris 1) [https]
+36: Germany (Erlangen) [https]
+37: Germany (Leipzig) [https]
+38: Germany (Göttingen) [https]
+39: Germany (Münster) [https]
+40: Germany (Regensburg) [https]
+41: Greece [https]
+42: Hungary [https]
+43: Iceland [https]
+44: India [https]
+45: Indonesia (Banda Aceh) [https]
+46: Iran (Mashhad) [https]
+47: Italy (Milano) [https]
+48: Italy (Padua) [https]
+49: Japan (Tokyo) [https]
+50: Japan (Yonezawa) [https]
+51: Korea (Gyeongsan-si) [https]
+52: Malaysia [https]
+53: Mexico (Mexico City) [https]
+54: Mexico (Texcoco) [https]
+55: Morocco [https]
+56: Netherlands (Dronten) [https]
+57: New Zealand [https]
+58: Norway [https]
+59: South Africa (Johannesburg) [https]
+60: Spain (A Coruña) [https]
+61: Spain (Madrid) [https]
+62: Sweden (Umeå) [https]
+63: Switzerland (Zurich 1) [https]
+64: Taiwan (Taipei) [https]
+65: Turkey (Denizli) [https]
+66: Turkey (Istanbul) [https]
+67: Turkey (Mersin) [https]
+68: UK (Bristol) [https]
+69: UK (London 1) [https]
+70: USA (IA) [https]
+71: USA (MI) [https]
+72: USA (MO) [https]
+73: USA (OH) [https]
+74: USA (OR) [https]
+75: USA (TN) [https]
+76: United Arab Emirates [https]
+77: Uruguay [https]
+78: (other mirrors)
+
+Selection: 75
+Warning: dependency ‘pbkrtest’ is not available
+also installing the dependencies ‘nloptr’, ‘lme4’, ‘car’, ‘rstatix’
+
+trying URL 'https://mirrors.nics.utk.edu/cran/src/contrib/nloptr_2.0.3.tar.gz'
+Content type 'application/x-gzip' length 2219877 bytes (2.1 MB)
+==================================================
+downloaded 2.1 MB
+
+trying URL 'https://mirrors.nics.utk.edu/cran/src/contrib/lme4_1.1-32.tar.gz'
+Content type 'application/x-gzip' length 2946012 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://mirrors.nics.utk.edu/cran/src/contrib/car_3.1-1.tar.gz'
+Content type 'application/x-gzip' length 578902 bytes (565 KB)
+==================================================
+downloaded 565 KB
+
+trying URL 'https://mirrors.nics.utk.edu/cran/src/contrib/rstatix_0.7.2.tar.gz'
+Content type 'application/x-gzip' length 405256 bytes (395 KB)
+==================================================
+downloaded 395 KB
+
+trying URL 'https://mirrors.nics.utk.edu/cran/src/contrib/ggpubr_0.6.0.tar.gz'
+Content type 'application/x-gzip' length 1941659 bytes (1.9 MB)
+==================================================
+downloaded 1.9 MB
+
+* installing *source* package ‘nloptr’ ...
+** package ‘nloptr’ successfully unpacked and MD5 sums checked
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C++... yes
+checking whether x86_64-conda-linux-gnu-c++ -std=gnu++11 accepts -g... yes
+checking for x86_64-conda-linux-gnu-c++ -std=gnu++11 option to enable C++11 features... none needed
+checking how to run the C++ preprocessor... x86_64-conda-linux-gnu-c++ -std=gnu++11 -E
+checking whether the compiler supports GNU C++... (cached) yes
+checking whether x86_64-conda-linux-gnu-c++ -std=gnu++11 accepts -g... (cached) yes
+checking for x86_64-conda-linux-gnu-c++ -std=gnu++11 option to enable C++11 features... (cached) none needed
+checking for pkg-config... no
+checking for cmake... no
+
+------------------ CMAKE NOT FOUND --------------------
+
+CMake was not found on the PATH. Please install CMake:
+
+ - sudo yum install cmake          (Fedora/CentOS; inside a terminal)
+ - sudo apt install cmake          (Debian/Ubuntu; inside a terminal).
+ - sudo pacman -S cmake            (Arch Linux; inside a terminal).
+ - sudo brew install cmake         (MacOS; inside a terminal with Homebrew)
+ - sudo port install cmake         (MacOS; inside a terminal with MacPorts)
+
+Alternatively install CMake from: <https://cmake.org/>
+
+-------------------------------------------------------
+
+ERROR: configuration failed for package ‘nloptr’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/nloptr’
+ERROR: dependency ‘nloptr’ is not available for package ‘lme4’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/lme4’
+ERROR: dependencies ‘pbkrtest’, ‘lme4’ are not available for package ‘car’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/car’
+ERROR: dependency ‘car’ is not available for package ‘rstatix’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/rstatix’
+ERROR: dependency ‘rstatix’ is not available for package ‘ggpubr’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/ggpubr’
+
+The downloaded source packages are in
+        ‘/tmp/RtmpaYgVwA/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+Warning messages:
+1: In doTryCatch(return(expr), name, parentenv, handler) :
+  unable to load shared object '/data/software/mamba/envs/R/lib/R/modules//R_X11.so':
+  libXt.so.6: cannot open shared object file: No such file or directory
+2: In install.packages("ggpubr") :
+  installation of package ‘nloptr’ had non-zero exit status
+3: In install.packages("ggpubr") :
+  installation of package ‘lme4’ had non-zero exit status
+4: In install.packages("ggpubr") :
+  installation of package ‘car’ had non-zero exit status
+5: In install.packages("ggpubr") :
+  installation of package ‘rstatix’ had non-zero exit status
+6: In install.packages("ggpubr") :
+  installation of package ‘ggpubr’ had non-zero exit status
+>

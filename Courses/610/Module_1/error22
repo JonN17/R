@@ -1,0 +1,43 @@
+installing to /data/software/mamba/envs/R/lib/R/library/00LOCK-testthat/00new/testthat/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (testthat)
+ERROR: dependencies ‘pkgdown’, ‘profvis’, ‘roxygen2’ are not available for package ‘devtools’
+* removing ‘/data/software/mamba/envs/R/lib/R/library/devtools’
+
+The downloaded source packages are in
+        ‘/tmp/Rtmp4SQaye/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+Warning messages:
+1: In install.packages("devtools") :
+  installation of package ‘systemfonts’ had non-zero exit status
+2: In install.packages("devtools") :
+  installation of package ‘textshaping’ had non-zero exit status
+3: In install.packages("devtools") :
+  installation of package ‘ragg’ had non-zero exit status
+4: In install.packages("devtools") :
+  installation of package ‘stringr’ had non-zero exit status
+5: In install.packages("devtools") :
+  installation of package ‘roxygen2’ had non-zero exit status
+6: In install.packages("devtools") :
+  installation of package ‘rmarkdown’ had non-zero exit status
+7: In install.packages("devtools") :
+  installation of package ‘htmlwidgets’ had non-zero exit status
+8: In install.packages("devtools") :
+  installation of package ‘pkgdown’ had non-zero exit status
+9: In install.packages("devtools") :
+  installation of package ‘profvis’ had non-zero exit status
+10: In install.packages("devtools") :
+  installation of package ‘devtools’ had non-zero exit status
+Error in loadNamespace(name) : there is no package called ‘devtools’
