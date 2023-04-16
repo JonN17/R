@@ -34,6 +34,15 @@ head(cases)
 # 5    4        3
 # 6    4        3
 
+# Question what family does the data suggest
+# - Poison, Binomial, Negative Binomial, Quasi Poisson
+# Answer: Poison, since we are counting the number of cases per day
+# Suggestion: Explain why it's not binomial, negative binomial and Quasi poisson
+
+
+# 
+
+
 # Plot data ---------------------------------------------------------------
 
 plot(cases$Days, cases$Students, xlab = "DAYS SINCE OUTBREAK",
@@ -46,6 +55,7 @@ plot(cases$Days, cases$Students, xlab = "DAYS SINCE OUTBREAK",
 # distribution.
 # It works well for count data as it forces all of the predicted values
 # to be positive.
+# XXXXXXXXXXXX forcing to be positive how?
 model1 <- glm(Students ~ Days, family=poisson, data = cases)
 
 summary(model1)
@@ -68,6 +78,22 @@ summary(model1)
 # 
 # Number of Fisher Scoring iterations: 5
 
+
+# Question: How do we know days is highly significant?
+# Answer: it has ***, p value is near zero, 2e-16
+
+# Question: is dispersion assumed or calculated for quasi-poisson regression
+# Answer: For poisson it is assumed to be 1, it is calculated for quasi poisson regression.
+# Clarification: Why?  XXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# Question: What is the null deviance?   
+# Answer: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# Question: AIC isn't that bad... why not?  What's a good / bad AIC?
+# Answer: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
 # Model interpretation ----------------------------------------------------
 
 # The negative coefficient for Days indicates that as days increase,
@@ -78,11 +104,55 @@ summary(model1)
 
 # Is there overdispersion? ------------------------------------------------
 
+# Question: Is there over dispersion?
+# Answer: No, the residual deviance (101.17)
+# is not greater than the degrees of freedom.
+# Residual deviance: 101.17  on 107  degrees of freedom
+
+# Question: What is over dispersion?
+# Answer: More variability than expected
+# Answer: Variance is > mean
+
+# Question: How to check for dispersion parameters?
+# dispersion parameter ~= residual deviance / degrees of freedom
+# Video https://www.youtube.com/watch?v=0W5QF_OnR7w
+# 
+
+# Question: Cause of over dispersion?
+# Answer: Model is wrong
+# Answer: Model is missing an interaction term. (lack of fit... goodness of fit test)
+# Answer: non-linearity
+# Answer: missing an important X variable
+#
+# 2nd most common issue 
+# Answer: Excessive zeros
+#
+# 3rd
+# Answer: It just is... doesn't fit poisson
+
+# Class material: https://www.youtube.com/watch?v=0W5QF_OnR7w
+# THis is excellent
+
+
+# ?????????????? XXXXXXXXXXXX how does this relate to the video
 # Residual deviance, 101.17, is not greater than the degrees of freedom, 107,
 # so the model does not exhibit overdispersion
 
 # Is the model adequate? --------------------------------------------------
+# Question: what's best 
+# Pearson chi square
+# Wald
+# anova =F
+# score test
+# wald & Score
+# ANSWER: pearson chi square .....
+# ANSWER: Observed - is the deviance of the model
+# ANSWER: Expected - degrees of freedom of the residuals
+# ??????? XXXXXXXXXXXXXX must dig deeper.
+
 
 # Pearson chi square
 pchisq(deviance(model1), df.residual(model1), lower.tail = FALSE)
 # 0.6405459. Do not reject the null hypothesis that the model is adequate
+
+# NOTE ... I assume 0.05 is what we should go for?

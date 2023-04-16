@@ -15,10 +15,39 @@ summary(yieldden)
 # Data prep ---------------------------------------------------------------
 
 #  Var (variety) is a factor, not a numerical value
+head(yieldden)
+
+max(yieldden$Var)
+# 3
+
+str(yieldden)
+# 'data.frame':	30 obs. of  3 variables:
+# Yield: num  105.6 89.4 71 60.3 47.6 ...
+# Dens : num  3.07 3.31 5.97 6.99 8.67 ...
+# Var  : int  1 1 1 1 1 1 1 1 1 1 ...
+
+library(dplyr) # needed for glimpse
+glimpse(yieldden)
 yieldden$Var <- factor(yieldden$Var)
+str(yieldden)
+# 'data.frame':	30 obs. of  3 variables:
+# Yield: num  105.6 89.4 71 60.3 47.6 ...
+# Dens : num  3.07 3.31 5.97 6.99 8.67 ...
+# Var  : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 1 ...
+
+#  Var has gone from int to Factor
+
+
 # let YD be the yield per unit area 
 yieldden$YD <- with(yieldden, Yield*Dens)
-summary(yieldden)
+str(yieldden)
+
+# Yield: num  105.6 89.4 71 60.3 47.6 ...
+# Dens : num  3.07 3.31 5.97 6.99 8.67 ...
+# Var  : Factor w/ 3 levels "1","2","3": 1 1 1 1 1 1 1 1 1 1 ...
+# YD   : num  324 296 424 421 413 ...
+
+summary(yieldden) # YD is bushells per acre of farm.... sortof
 # Yield             Dens        Var          YD       
 # Min.   : 16.30   Min.   : 2.140   1:10   Min.   :281.6  
 # 1st Qu.: 25.95   1st Qu.: 4.647   2:10   1st Qu.:335.7  
@@ -31,6 +60,7 @@ summary(yieldden)
 
 plot(yieldden$Dens,yieldden$Yield)
 # positive continuous data, skewed right
+# !!!!!!!!! come up with examples for skewed left
 plot(yieldden$Dens,yieldden$YD)
 # as density increase, yield per unit area is more variable
 # these observations suggest a gamma GLM
@@ -38,11 +68,32 @@ plot(yieldden$Dens,yieldden$YD)
 # Model -------------------------------------------------------------------
 
 # model with interactions
+# ????????? interactions
+# YD ~ (Dens + I(1/Dens)  ... ?????????
+# glm(....) * Var   ... ?????????
+# family = Gamma(link = inverse) ... ?????????
+# data=yieldden ... is the input data
 yd.glm.int <- glm(YD ~ (Dens + I(1/Dens)) * Var,
                   family = Gamma(link = inverse), data=yieldden)
+
+
+# This shows that "intjon" doesn't mean anythign.
+# It's just a suffix to be added to the end of the variable.
+# there needs to be a () for there to be a function
+# I() Inhibit Interpretation/Conversion of Objects
+yd.glm.intjon <- glm(YD ~ (Dens + I(1/Dens)) * Var,
+                     family = Gamma(link = inverse), data=yieldden)
+round(anova (yd.glm.intjon, test="F"), 2)
+# ????????????????? why do we need the I()
+# What does the '~' mean ???????????????? 
+
 # in R, the analysis of deviance table is returned by anova()
+# deviance is a goodness-of-fit 
 # test="F" is needed to obtain p-values
+# F-distribution anova test ... why?????????
+# https://en.wikipedia.org/wiki/F-test
 round(anova (yd.glm.int, test="F"), 2)
+
 #               Df Deviance Resid. Df Resid. Dev      F Pr(>F)    
 # NULL                             29       1.45                  
 # Dens           1     1.00        28       0.45 191.67 <2e-16 ***
@@ -54,11 +105,27 @@ round(anova (yd.glm.int, test="F"), 2)
 #   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 # neither of the interaction terms are significant
 # refit model with no interactions
+# Interaction terms are 'Dens:Var' and 'I(1/Dens):Var'
 
+
+# previous model
+# glm(YD ~ (Dens + I(1/Dens)) * Var, 
+#                     family = Gamma(link = inverse), data=yieldden)
+
+# update ????????????
+# significance of this formula
 # model without interactions
 yd.glm <- update(yd.glm.int, . ~ Dens + I(1/Dens) + Var)
 round(anova(yd.glm, test="F"), 2)
+
+# Interactions
+# with     YD ~ (Dens + I(1/Dens)) * Var
+# without  YD ~  Dens + I(1/Dens)  + Var
+
+
 # the fitted model is:
+# Print Coefficient Matrices
+# coef() Extract Model Coefficients
 printCoefmat(coef(summary(yd.glm)), 5)
 #                Estimate  Std. Error t value  Pr(>|t|)    
 # (Intercept)  1.9687e-03  1.3934e-04 14.1292 2.009e-13 ***
@@ -71,6 +138,8 @@ printCoefmat(coef(summary(yd.glm)), 5)
 
 # Confidence intervals for individual coefficients ------------------------
 
+
+# Confidence Intervals for Model Parameters
 confint(yd.glm)
 #                     2.5 %        97.5 %
 # (Intercept)  1.696107e-03  2.242322e-03

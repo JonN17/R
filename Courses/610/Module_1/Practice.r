@@ -65,11 +65,27 @@ sd(data$age)
 summary(data)
 # b. Graphical descriptive statistics: histogram, boxplot, normal probability plot, etc.
 
+# histogram
+
+# boxplot
+
+
+# normal probability plot
 
 # 5. For each qualitative variable generate the following and state and interpret your observations:
 # a. Frequency tables and relative frequency tables
 
+# Frequency tables 
+
+# relative frequency tables
+
+
 # b. Graphical descriptive statistics: barchart, pie chart
+
+# barchart
+
+# pie chart
+
 
 # 6. Using 2 pairs of meaningful qualitative variables generate the following and interpret them:
 # a. Contingency tables
